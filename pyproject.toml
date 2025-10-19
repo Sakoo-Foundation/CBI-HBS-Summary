@@ -1,0 +1,11 @@
+[project]
+name = "cbi-hbs-summary"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastexcel>=0.16.0",
+    "marimo[recommended]>=0.17.0",
+    "xlsxwriter>=3.2.9",
+]
