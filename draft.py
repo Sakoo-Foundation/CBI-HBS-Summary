@@ -15,9 +15,10 @@ def _():
 
 @app.cell
 def _(Path):
+    DATA_DIR = Path("Data")
     excel_dir = Path("Data/Excel_Files")
     csv_dir = Path("Data/CSV_Files")
-    return csv_dir, excel_dir
+    return DATA_DIR, csv_dir, excel_dir
 
 
 @app.cell
@@ -66,7 +67,6 @@ def _(pl):
         "\'",
         "«",
         "»",
-        ".",
         ",",
         ";",
         ":",
@@ -95,6 +95,8 @@ def _(pl):
             .str.replace_all("\\s+", " ")
 
             .str.strip_chars()
+
+            .str.replace(r"\.0$", "")
         )
 
 
@@ -118,7 +120,14 @@ def _(pl):
 
 
 @app.cell
-def _(excel_dir, extract_year_index, fastexcel, pl, sanitize_farsi_text):
+def _(
+    DATA_DIR,
+    excel_dir,
+    extract_year_index,
+    fastexcel,
+    pl,
+    sanitize_farsi_text,
+):
     df_list = []
     for file in excel_dir.iterdir():
         reader = fastexcel.read_excel(file)
@@ -135,18 +144,18 @@ def _(excel_dir, extract_year_index, fastexcel, pl, sanitize_farsi_text):
             pl.col("Table_Name").pipe(sanitize_farsi_text),
         )
     )
-    index
+    index.write_csv(DATA_DIR / "index.csv")
     return (index,)
 
 
 @app.cell
-def _(index, pl):
+def _(DATA_DIR, index, pl):
     available_tables = (
         index
         .filter(pl.col("Available").gt(0))
         .pivot(index="Year", on="Table_Name", values="Table_Number")
     )
-    available_tables
+    available_tables.write_csv(DATA_DIR / "available_tables.csv")
     return (available_tables,)
 
 
@@ -167,18 +176,6 @@ def _(available_tables):
             available_tables.get_column(table_name),
         ))
     return (get_table_number_dict,)
-
-
-@app.cell
-def _(get_table_number_dict):
-    get_table_number_dict("درصد توزیع افراد شش ساله و بیشتر خانوارها به تفکیک جنسیت بر حسب میزان سواد")
-    return
-
-
-@app.cell
-def _(get_year_file_reader):
-    get_year_file_reader(1400).load_sheet(12, header_row=None)
-    return
 
 
 @app.cell
