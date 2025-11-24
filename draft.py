@@ -7,10 +7,11 @@ app = marimo.App(width="medium")
 @app.cell
 def _():
     from pathlib import Path
+    import re
 
     import fastexcel
     import polars as pl
-    return Path, fastexcel, pl
+    return Path, fastexcel, pl, re
 
 
 @app.cell
@@ -162,7 +163,7 @@ def _(DATA_DIR, index, pl):
 @app.cell
 def _(excel_dir, fastexcel):
     def get_year_file_reader(year: int) -> fastexcel.ExcelReader:
-        file = excel_dir/f"{year}.xlsx"
+        file = excel_dir / f"{year}.xlsx"
         reader = fastexcel.read_excel(file)
         return reader
     return (get_year_file_reader,)
@@ -184,6 +185,7 @@ def _(
     get_table_number_dict,
     get_year_file_reader,
     pl,
+    re,
     sanitize_farsi_text,
 ):
     def extract_table_across_years(table_name: str) -> None:
@@ -193,7 +195,7 @@ def _(
                 continue
             sheet = get_year_file_reader(year).load_sheet(table_number, header_row=None)
             df = pl.DataFrame(sheet).cast(pl.String).select(pl.all().pipe(sanitize_farsi_text))
-
+            table_number = re.sub(r" (?P<number>\d)$", r" ۰\g<number>", table_number)
             file_name = f"{table_number}-{table_name}".replace(" ", "_")
             path = csv_dir/f"{year}"/f"{file_name}.csv"
             path.parent.mkdir(exist_ok=True, parents=True)
