@@ -28,7 +28,7 @@ jobs:
       # Export notebook to HTML
       - name: 📄 Export notebook
         run: |
-          uv run marimo export html-wasm app.py -o ./dist --mode edit --force
+          uv run marimo export html-wasm app.py -o ./dist --mode run --force
 
       - name: 📄 Copy Data to dist
         run: cp -r ./Data ./dist/Data
