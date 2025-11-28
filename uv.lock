@@ -52,12 +52,18 @@ wheels = [
 [[package]]
 name = "cbi-hbs-summary"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "fastexcel" },
     { name = "marimo", extra = ["recommended"] },
     { name = "pandas" },
     { name = "xlsxwriter" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "cbi-hbs-summary" },
+    { name = "ruff" },
 ]
 
 [package.metadata]
@@ -66,6 +72,12 @@ requires-dist = [
     { name = "marimo", extras = ["recommended"], specifier = ">=0.17.0" },
     { name = "pandas", specifier = ">=2.3.3" },
     { name = "xlsxwriter", specifier = ">=3.2.9" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "cbi-hbs-summary", editable = "." },
+    { name = "ruff", specifier = ">=0.14.0" },
 ]
 
 [[package]]
