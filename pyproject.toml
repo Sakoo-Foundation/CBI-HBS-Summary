@@ -10,3 +10,30 @@ dependencies = [
     "pandas>=2.3.3",
     "xlsxwriter>=3.2.9",
 ]
+
+[project.urls]
+Homepage = "https://github.com/Sakoo-Foundation/CBI-HBS-Summary"
+Repository = "https://github.com/Sakoo-Foundation/CBI-HBS-Summary"
+
+[tool.uv]
+package = true
+
+[tool.uv.workspace]
+members = [
+  ".",
+]
+
+[tool.uv.sources]
+cbi-hbs-summary = { workspace = true, editable = true }
+
+[dependency-groups]
+dev = [
+  "cbi-hbs-summary",
+  "ruff>=0.14.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+cbi_hbs_summary = ["**/*.yaml", "**/*.csv"]

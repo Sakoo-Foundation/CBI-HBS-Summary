@@ -7,8 +7,8 @@
 
 import marimo
 
-__generated_with = "0.17.0"
-app = marimo.App(width="medium", layout_file="layouts/app.grid.json")
+__generated_with = "0.18.1"
+app = marimo.App(width="full", app_title="CBI HBS Summary")
 
 
 @app.cell
@@ -41,12 +41,6 @@ def _(index, mo):
 
 
 @app.cell
-def _(year):
-    year
-    return
-
-
-@app.cell
 def _(index, mo, pl, year):
     index_table = mo.ui.table(
         index.filter(
@@ -59,12 +53,6 @@ def _(index, mo, pl, year):
         show_column_summaries=False,
     )
     return (index_table,)
-
-
-@app.cell
-def _(index_table):
-    index_table
-    return
 
 
 @app.cell
@@ -85,12 +73,80 @@ def _(index_table, mo, pl):
 
 @app.cell
 def _(get_selected_table, mo):
-    mo.ui.table(
-        get_selected_table(),
-        pagination=False,
-        show_data_types=False,
-        show_column_summaries=False,
+    selected_table_df = get_selected_table()
+    if selected_table_df is None:
+        selected_table = None
+    else:
+        selected_table = mo.ui.dataframe(
+            selected_table_df,
+            page_size=20,
+            # pagination=False,
+            # show_data_types=False,
+            # show_column_summaries=False,
+        )
+    return (selected_table,)
+
+
+@app.cell
+def _(index_table, mo, selected_table, year):
+    raw_tables = mo.vstack(
+        [
+            year,
+            mo.md("---"),
+            mo.hstack(
+                [
+                    index_table,
+                    selected_table,
+                ],
+                widths="equal",
+            ),
+        ],
     )
+    return (raw_tables,)
+
+
+@app.cell
+def _(mo):
+    cleaned_tables_names = [
+        "household_appliances_access"
+    ]
+    cleaned_table_name = mo.ui.dropdown(
+        cleaned_tables_names,
+        "household_appliances_access",
+        label="Table Name"
+    )
+    return (cleaned_table_name,)
+
+
+@app.cell
+def _(cleaned_table_name, mo, pl):
+    cleaned_table_path = str(
+        mo.notebook_location() /
+        "Data/Cleaned_Tables" /
+        f"{cleaned_table_name.value}.csv"
+    )
+    cleaned_table = pl.read_csv(cleaned_table_path)
+    return (cleaned_table,)
+
+
+@app.cell
+def _(cleaned_table, cleaned_table_name, mo):
+    cleaned_tables = mo.vstack(
+        [
+            cleaned_table_name,
+            mo.md("---"),
+            mo.ui.dataframe(cleaned_table, page_size=30),
+        ]
+    )
+    return (cleaned_tables,)
+
+
+@app.cell
+def _(cleaned_tables, mo, raw_tables):
+    mo.ui.tabs({
+        "Raw Tables": raw_tables,
+        "Clean Tables": cleaned_tables,
+    })
     return
 
 

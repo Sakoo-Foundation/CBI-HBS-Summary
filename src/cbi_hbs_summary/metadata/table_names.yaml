@@ -1,0 +1,26 @@
+"متوسط هزینه ی ناخالص سالانه یک خانوار به تفکیک گروه های مختلف هزینه": annual_gross_expenditure_by_group
+"درصد تغییر متوسط هزینه ناخالص سالانه یک خانوار به تفکیک گروه های مختلف هزینه": change_annual_gross_expenditure_by_group
+"متوسط هزینه خالص سالانه یک خانوار به تفکیک گروه های مختلف هزینه": annual_net_expenditure_by_group
+"درصد تغییر متوسط هزینه خالص یک خانوار به تفکیک گروه های مختلف هزینه": change_annual_net_expenditure_by_group
+"متوسط هزینه ناخالص سالانه زیرگروه های خوراکی ها، آشامیدنی ها و دخانیات": annual_gross_expenditure_food_beverages_tobacco
+"متوسط مقدار مصرف سالانه برخی اقلام خوراکی ها، آشامیدنی ها و دخانیات یک خانوار": annual_consumption_quantity_food_beverages_tobacco
+"متوسط هزینه ناخالص سالانه زیرگروه های غیرخوراکی": annual_gross_expenditure_non_food
+"متوسط درآمد ناخالص سالانه یک خانوار و سهم گروه های مختلف درآمد": annual_gross_income_by_source
+"درصد تغییر متوسط درآمد ناخالص سالانه یک خانوار به تفکیک گروه های مختلف درآمد": change_annual_gross_income_by_source
+"متوسط درآمد خالص سالانه یک خانوار و سهم گروه های مختلف درآمد": annual_net_income_by_source
+"درصد تغییر متوسط درآمد خالص سالانه یک خانوار به تفکیک گروه های مختلف درآمد": change_annual_net_income_by_source
+"بعد خانوار": household_size
+"درصد توزیع خانوارها بر حسب تعداد افراد خانوار": household_distribution_by_members
+"درصد توزیع افراد خانوارها بر حسب گروه های سنی": population_distribution_by_age_group
+"درصد توزیع افراد شش ساله و بیشتر خانوارها بر حسب میزان سواد": literacy_rate_6_plus
+"درصد توزیع افراد شش ساله و بیشتر خانوارها به تفکیک جنسیت بر حسب میزان سواد": literacy_rate_6_plus_by_gender
+"درصد توزیع افراد شش ساله وبیشتر خانوارها بر حسب وضع فعالیت": employment_status_6_plus
+"درصد توزیع افراد شش ساله و بیشتر خانوارها به تفکیک جنسیت بر حسب وضع فعالیت": employment_status_6_plus_by_gender
+"درصد توزیع خانوارها بر حسب تعداد شاغلین": household_distribution_by_number_of_employed
+"درصد توزیع افراد شاغل خانوار بر حسب رشته فعالیت محل کار": employed_by_industry
+"درصد توزیع افراد شاغل خانوار بر حسب وضعیت شغلی": employed_by_occupation_status
+"درصد توزیع خانوارها بر حسب نحوه تصرف مسکن": housing_tenure
+"درصد توزیع محل سکونت خانوارها بر حسب نوع مصالح عمده به کار رفته در ساختمان": housing_materials
+"درصد توزیع خانوارها بر حسب تعداد اتاق های مورد استفاده خانوار": housing_rooms_used
+"درصد خانوارهای استفاده کننده از تسهیلات محل سکونت": household_facilities_access
+"درصد خانوارهای استفاده کننده از لوازم زندگی": household_appliances_access

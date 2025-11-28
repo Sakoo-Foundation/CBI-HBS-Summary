@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.17.0"
+__generated_with = "0.18.1"
 app = marimo.App(width="medium")
 
 
@@ -11,7 +11,9 @@ def _():
 
     import fastexcel
     import polars as pl
-    return Path, fastexcel, pl, re
+
+    import cbi_hbs_summary
+    return Path, cbi_hbs_summary, fastexcel, pl, re
 
 
 @app.cell
@@ -19,7 +21,10 @@ def _(Path):
     DATA_DIR = Path("Data")
     excel_dir = Path("Data/Excel_Files")
     csv_dir = Path("Data/CSV_Files")
-    return DATA_DIR, csv_dir, excel_dir
+
+    cleaned_dir = DATA_DIR / "Cleaned_Tables"
+    cleaned_dir.mkdir(exist_ok=True)
+    return DATA_DIR, cleaned_dir, csv_dir, excel_dir
 
 
 @app.cell
@@ -42,93 +47,7 @@ def _(pl):
 
 
 @app.cell
-def _(pl):
-    INVISIBLE_CHARS = [
-        chr(8203),
-        chr(173),
-        chr(8207),
-        chr(8235),
-        chr(8236),
-        chr(8234),
-        chr(65279)
-    ]
-
-
-    UNWANTED_SYMBOLS = [
-        "\n",
-        "\r",
-        "\t",
-        "…",
-        "ـ",
-        "_",
-        "•",
-        "\\*",
-        "`",
-        "\"",
-        "\'",
-        "«",
-        "»",
-        ",",
-        ";",
-        ":",
-    ]
-
-
-    def sanitize_farsi_text(column: pl.Expr) -> pl.Expr:
-        """
-        Clean Farsi text by replacing Arabic characters, removing invisible and unwanted characters,
-        normalizing spaces, and stripping leading/trailing spaces.
-        """
-
-        return (
-            column
-            .pipe(replace_arabic_characters)
-
-            # Replace Zero Width Non-Joiner ('\u200c') with a space
-            .str.replace_all(chr(8204), " ")
-
-            # Remove other invisible and unwanted characters
-            .str.replace_all(
-                "[" + "".join(INVISIBLE_CHARS + UNWANTED_SYMBOLS) + "]", ""
-            )
-
-            # Normalize spaces: replace all multi-space occurrences with a single space
-            .str.replace_all("\\s+", " ")
-
-            .str.strip_chars()
-
-            .str.replace(r"\.0$", "")
-        )
-
-
-    def replace_arabic_characters(column: pl.Expr) -> pl.Expr:
-        """
-        Replace Arabic characters with their Farsi equivalents in the Series.
-        """
-        character_mapping = {
-            chr(1610): chr(1740), # ي -> ی
-            chr(1574): chr(1740), # ئ -> ی
-            chr(1609): chr(1740), # ى -> ی
-            chr(1571): chr(1575), # أ -> ا
-            chr(1573): chr(1575), # إ -> ا
-            chr(1572): chr(1608), # ؤ -> و
-            chr(1603): chr(1705), # ك -> ک
-            chr(1728): chr(1607), # ۀ -> ه
-            chr(1577): chr(1607), # ة -> ه
-        }
-        return column.str.replace_many(character_mapping)
-    return (sanitize_farsi_text,)
-
-
-@app.cell
-def _(
-    DATA_DIR,
-    excel_dir,
-    extract_year_index,
-    fastexcel,
-    pl,
-    sanitize_farsi_text,
-):
+def _(DATA_DIR, cbi_hbs_summary, excel_dir, extract_year_index, fastexcel, pl):
     df_list = []
     for file in excel_dir.iterdir():
         reader = fastexcel.read_excel(file)
@@ -142,7 +61,7 @@ def _(
     index = (
         pl.concat(df_list)
         .with_columns(
-            pl.col("Table_Name").pipe(sanitize_farsi_text),
+            pl.col("Table_Name").pipe(cbi_hbs_summary.utils.sanitize_farsi_text),
         )
     )
     index.write_csv(DATA_DIR / "index.csv")
@@ -173,7 +92,7 @@ def _(excel_dir, fastexcel):
 def _(available_tables):
     def get_table_number_dict(table_name: str):
         return dict(zip(
-            available_tables["Year"],
+            available_tables.get_column("Year"),
             available_tables.get_column(table_name),
         ))
     return (get_table_number_dict,)
@@ -181,12 +100,12 @@ def _(available_tables):
 
 @app.cell
 def _(
+    cbi_hbs_summary,
     csv_dir,
     get_table_number_dict,
     get_year_file_reader,
     pl,
     re,
-    sanitize_farsi_text,
 ):
     def extract_table_across_years(table_name: str) -> None:
         table_number_dict = get_table_number_dict(table_name)
@@ -194,7 +113,7 @@ def _(
             if table_number is None:
                 continue
             sheet = get_year_file_reader(year).load_sheet(table_number, header_row=None)
-            df = pl.DataFrame(sheet).cast(pl.String).select(pl.all().pipe(sanitize_farsi_text))
+            df = pl.DataFrame(sheet).cast(pl.String).select(pl.all().pipe(cbi_hbs_summary.utils.sanitize_farsi_text))
             table_number = re.sub(r" (?P<number>\d)$", r" ۰\g<number>", table_number)
             file_name = f"{table_number}-{table_name}".replace(" ", "_")
             path = csv_dir/f"{year}"/f"{file_name}.csv"
@@ -205,8 +124,62 @@ def _(
 
 @app.cell
 def _(available_tables, extract_table_across_years):
-    for table_name in available_tables.columns[1:]:
-        extract_table_across_years(table_name)
+    def extract_raw_tables():
+        for table_name in available_tables.columns[1:]:
+            extract_table_across_years(table_name)
+
+    extract_raw_tables()
+    return
+
+
+@app.cell
+def _(available_tables, cbi_hbs_summary, get_year_file_reader, pl):
+    standard_tables = available_tables.rename(cbi_hbs_summary.metadata.load("table_names"))
+
+    def get_table_numbers(table_name) -> dict:
+        return dict(zip(
+            standard_tables.get_column("Year"),
+            standard_tables.get_column(table_name),
+        ))
+
+    def extract_standard_tables(name: str):
+        rename_dict = {k.replace(" ", ""): v for k, v in cbi_hbs_summary.metadata.load("column_names")[name].items()}
+        table_numbers = get_table_numbers(name)
+
+        df_list = []
+        for year, table_number in table_numbers.items():
+            if table_number is None:
+                continue
+            sheet = get_year_file_reader(year).load_sheet(table_number, header_row=None)
+            df = (
+                pl.DataFrame(sheet).cast(pl.String)
+                .select(
+                    pl.all()
+                    .pipe(cbi_hbs_summary.utils.sanitize_farsi_text)
+                    .str.replace_all(r"[\s\(\)،]", "")
+                )
+            )
+            columns = list(map(lambda x: rename_dict[x], df.row(0)))
+            df.columns = columns
+            df = (
+                df[1:]
+                .with_columns(pl.all().replace("", None))
+                .select(
+                    pl.lit(year).cast(pl.Int16).alias("Report_Year"),
+                    pl.col("Year").cast(pl.Int16),
+                    pl.all().exclude("Year").cast(pl.Float64)
+                )
+            )
+            df_list.append(df)
+        result = pl.concat(df_list, how="diagonal")
+        return result
+    return (extract_standard_tables,)
+
+
+@app.cell
+def _(cleaned_dir, extract_standard_tables):
+    table_name = "household_appliances_access"
+    extract_standard_tables(name=table_name).write_csv(cleaned_dir / f"{table_name}.csv")
     return
 
 

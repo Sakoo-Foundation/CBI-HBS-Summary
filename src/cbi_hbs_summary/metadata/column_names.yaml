@@ -1,0 +1,102 @@
+_general:
+  سال: Year
+
+annual_gross_expenditure_by_group:
+  col: col
+
+change_annual_gross_expenditure_by_group:
+  col: col
+
+annual_net_expenditure_by_group:
+  col: col
+
+change_annual_net_expenditure_by_group:
+  col: col
+
+annual_gross_expenditure_food_beverages_tobacco:
+  col: col
+
+annual_consumption_quantity_food_beverages_tobacco:
+  col: col
+
+annual_gross_expenditure_non_food:
+  col: col
+
+annual_gross_income_by_source:
+  col: col
+
+change_annual_gross_income_by_source:
+  col: col
+
+annual_net_income_by_source:
+  col: col
+
+change_annual_net_income_by_source:
+  col: col
+
+household_size:
+  col: col
+
+household_distribution_by_members:
+  col: col
+
+population_distribution_by_age_group:
+  col: col
+
+literacy_rate_6_plus:
+  col: col
+
+literacy_rate_6_plus_by_gender:
+  col: col
+
+employment_status_6_plus:
+  col: col
+
+employment_status_6_plus_by_gender:
+  col: col
+
+household_distribution_by_number_of_employed:
+  col: col
+
+employed_by_industry:
+  col: col
+
+employed_by_occupation_status:
+  col: col
+
+housing_tenure:
+  col: col
+
+housing_materials:
+  col: col
+
+housing_rooms_used:
+  col: col
+
+household_facilities_access:
+  col: col
+
+household_appliances_access:
+  "اتومبیل شخصی": Car
+  "اتوموبیل شخصی": Car
+  "موتور سیکلت": Motorcycle
+  "دوچرخه از نمره 16 به بالا": Bicycle
+  "دوچرخه از نمره ۱۶ به بالا": Bicycle
+  "چرخ خیاطی": Sewing_Machine
+  "رادیو ضبط و ضبط صوت": Radio_and_Cassette
+  "رادیو رادیو ضبط و ضبط صوت": Radio_and_Cassette
+  "رادیو": Radio
+  "تلویزیون": TV
+  "ویدیو": VCR
+  "ویدیو و دستگاه پخش لوح فشرده": VCR
+  "کامپیوتر شخصی": PC
+  "رایانه": PC
+  "یخچال": Refrigerator
+  "فریزر و یخچال فریزر": Freezer_and_Freezer_Refrigerator
+  "یخچال فریزر و یخچال فریزر": Refrigerator_Freezer_and_Freezer_Refrigerator
+  "انواع پنکه": Fan
+  "اجاق گاز": Oven
+  "جارو برقی": Vacuum_Cleaner
+  "ماشین لباسشویی": Washing_Machine
+  "تلفن همراه": Cellphone
+  "دوربین فیلم برداری": Camera
