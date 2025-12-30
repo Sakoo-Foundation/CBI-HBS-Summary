@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.18.1"
+__generated_with = "0.18.4"
 app = marimo.App(width="medium")
 
 
@@ -133,7 +133,7 @@ def _(available_tables, extract_table_across_years):
 
 
 @app.cell
-def _(available_tables, cbi_hbs_summary, get_year_file_reader, pl):
+def _(available_tables, cbi_hbs_summary, get_year_file_reader, pl, re):
     standard_tables = available_tables.rename(cbi_hbs_summary.metadata.load("table_names"))
 
     def get_table_numbers(table_name) -> dict:
@@ -143,7 +143,6 @@ def _(available_tables, cbi_hbs_summary, get_year_file_reader, pl):
         ))
 
     def extract_standard_tables(name: str):
-        rename_dict = {k.replace(" ", ""): v for k, v in cbi_hbs_summary.metadata.load("column_names")[name].items()}
         table_numbers = get_table_numbers(name)
 
         df_list = []
@@ -159,6 +158,9 @@ def _(available_tables, cbi_hbs_summary, get_year_file_reader, pl):
                     .str.replace_all(r"[\s\(\)،]", "")
                 )
             )
+            if any(re.match(r"^\d{4}$", c) is not None for c in df.row(0)):
+                df = df.transpose()
+            rename_dict = cbi_hbs_summary.metadata.get_rename_dict(name, year)
             columns = list(map(lambda x: rename_dict[x], df.row(0)))
             df.columns = columns
             df = (
@@ -167,7 +169,7 @@ def _(available_tables, cbi_hbs_summary, get_year_file_reader, pl):
                 .select(
                     pl.lit(year).cast(pl.Int16).alias("Report_Year"),
                     pl.col("Year").cast(pl.Int16),
-                    pl.all().exclude("Year").cast(pl.Float64)
+                    pl.all().exclude("Year").replace("-", None).cast(pl.Float64)
                 )
             )
             df_list.append(df)
@@ -178,8 +180,39 @@ def _(available_tables, cbi_hbs_summary, get_year_file_reader, pl):
 
 @app.cell
 def _(cleaned_dir, extract_standard_tables):
-    table_name = "household_appliances_access"
+    table_name = "household_distribution_by_number_of_employed"
     extract_standard_tables(name=table_name).write_csv(cleaned_dir / f"{table_name}.csv")
+    return
+
+
+@app.cell
+def _(cleaned_dir, pl):
+    (
+        pl.read_csv(cleaned_dir / "annual_gross_expenditure_by_group.csv")
+        .select(
+            "Report_Year", "Year",
+            pl.col("Gross_Expenditure_Total").alias("Total"),
+            pl.col("Gross_Expenditure_COICOP2018_01")
+            .fill_null(pl.col("Gross_Expenditure_COICOP1999_01"))
+            .fill_null(pl.col("Gross_Expenditure_SNA_1.1"))
+            .alias("Food_and_Beverages"),
+        )
+        .write_csv(cleaned_dir / f"annual_gross_expenditure_by_group_normalized.csv")
+    )
+    return
+
+
+@app.cell
+def _(cleaned_dir, pl):
+    (
+        pl.read_csv(cleaned_dir / "annual_gross_expenditure_by_group_normalized.csv")
+        .select(
+            "Report_Year", "Year",
+            pl.all().exclude("Report_Year", "Year")
+            .truediv(pl.col("Total")).mul(100)
+        )
+        .write_csv(cleaned_dir / f"annual_gross_expenditure_by_group_normalized_share.csv")
+    )
     return
 
 

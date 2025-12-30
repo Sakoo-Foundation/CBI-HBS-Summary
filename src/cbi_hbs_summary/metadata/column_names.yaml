@@ -1,23 +1,162 @@
 _general:
   سال: Year
+  گروه های هزینه: Year
+  "کل": Total
 
 annual_gross_expenditure_by_group:
-  col: col
+  1380:
+    "جمع کل هزینه ناخالص": Gross_Expenditure_Total
+    "1- خوراکیها،آشامیدنیها و دخانیات": Gross_Expenditure_SNA_1
+    "خوراکی ها و آشامیدنی ها": Gross_Expenditure_SNA_1.1
+    "دخانیات": Gross_Expenditure_SNA_1.2
+    "2- پوشاک و کفش": Gross_Expenditure_SNA_2
+    "3- مسکن ، آب ، برق و سوخت": Gross_Expenditure_SNA_3
+    "4- لوازم، اثاث وخدمات مورد استفاده درخانه": Gross_Expenditure_SNA_4
+    "5- درمان و بهداشت": Gross_Expenditure_SNA_5
+    "6- حمل و نقل و ارتباطات": Gross_Expenditure_SNA_6
+    "حمل و نقل": Gross_Expenditure_SNA_6.1
+    "ارتباطات": Gross_Expenditure_SNA_6.2
+    "7- تفریح،سرگرمی،تحصیل وخدمات فرهنگی": Gross_Expenditure_SNA_7
+    "تفریح و سرگرمی": Gross_Expenditure_SNA_7.1
+    "تحصیل و خدمات فرهنگی": Gross_Expenditure_SNA_7.2
+    "8- کالاها و خدمات متفرقه": Gross_Expenditure_SNA_8
+
+  1383:
+    "جمع کل هزینه ناخالص": Gross_Expenditure_Total
+    "1- خوراکیها و آشامیدنیها": Gross_Expenditure_COICOP1999_01
+    "2- دخانیات": Gross_Expenditure_COICOP1999_02
+    "3- پوشاک و کفش": Gross_Expenditure_COICOP1999_03
+    "4- مسکن، آب، برق، گاز و سایر سوخت ها": Gross_Expenditure_COICOP1999_04
+    "5- لوازم، اثاث و خدمات مورد استفاده در خانه": Gross_Expenditure_COICOP1999_05
+    "6- بهداشت و درمان": Gross_Expenditure_COICOP1999_06
+    "7- حمل ونقل": Gross_Expenditure_COICOP1999_07
+    "8- ارتباطات": Gross_Expenditure_COICOP1999_08
+    "9- تفریح و امور فرهنگی": Gross_Expenditure_COICOP1999_09
+    "10- تحصیل": Gross_Expenditure_COICOP1999_10
+    "11- رستوران و هتل": Gross_Expenditure_COICOP1999_11
+    "12- کالاها و خدمات متفرقه": Gross_Expenditure_COICOP1999_12
+
+  1400:
+    "جمع کل هزینه ناخالص": Gross_Expenditure_Total
+    "1- خوراکیها و آشامیدنیها": Gross_Expenditure_COICOP2018_01
+    "2- دخانیات": Gross_Expenditure_COICOP2018_02
+    "3- پوشاک و کفش": Gross_Expenditure_COICOP2018_03
+    "4- مسکن، آب، برق، گاز و سایر سوخت ها": Gross_Expenditure_COICOP2018_04
+    "5- لوازم، اثاث و خدمات مورد استفاده در خانه": Gross_Expenditure_COICOP2018_05
+    "6- بهداشت و درمان": Gross_Expenditure_COICOP2018_06
+    "7- حمل ونقل": Gross_Expenditure_COICOP2018_07
+    "8- ارتباطات": Gross_Expenditure_COICOP2018_08
+    "9- تفریح و امور فرهنگی": Gross_Expenditure_COICOP2018_09
+    "10- تحصیل": Gross_Expenditure_COICOP2018_10
+    "11- رستوران و هتل": Gross_Expenditure_COICOP2018_11
+    "12- کالاها و خدمات متفرقه": Gross_Expenditure_COICOP2018_12 # Insurance and financial services
 
 change_annual_gross_expenditure_by_group:
-  col: col
+  "جمع کل هزینه ناخالص": Gross_Expenditure_Growth_Total
+  "1- خوراکیها و آشامیدنیها": Gross_Expenditure_Growth_COICOP2018_01
+  "2- دخانیات": Gross_Expenditure_Growth_COICOP2018_02
+  "3- پوشاک و کفش": Gross_Expenditure_Growth_COICOP2018_03
+  "4- مسکن، آب، برق، گاز و سایر سوخت ها": Gross_Expenditure_Growth_COICOP2018_04
+  "5- لوازم، اثاث و خدمات مورد استفاده در خانه": Gross_Expenditure_Growth_COICOP2018_05
+  "6- بهداشت و درمان": Gross_Expenditure_Growth_COICOP2018_06
+  "7- حمل ونقل": Gross_Expenditure_Growth_COICOP2018_07
+  "8- ارتباطات": Gross_Expenditure_Growth_COICOP2018_08
+  "9- تفریح و امور فرهنگی": Gross_Expenditure_Growth_COICOP2018_09
+  "10- تحصیل": Gross_Expenditure_Growth_COICOP2018_10
+  "11- رستوران و هتل": Gross_Expenditure_Growth_COICOP2018_11
+  "12- کالاها و خدمات متفرقه": Gross_Expenditure_Growth_COICOP2018_12 # Insurance and financial services
 
 annual_net_expenditure_by_group:
-  col: col
+  "جمع کل هزینه خالص": Net_Expenditure_Total
+  "1- خوراکیها و آشامیدنیها": Net_Expenditure_COICOP2018_01
+  "2- دخانیات": Net_Expenditure_COICOP2018_02
+  "3- پوشاک و کفش": Net_Expenditure_COICOP2018_03
+  "4- مسکن، آب، برق، گاز و سایر سوخت ها": Net_Expenditure_COICOP2018_04
+  "5- لوازم، اثاث و خدمات مورد استفاده در خانه": Net_Expenditure_COICOP2018_05
+  "6- بهداشت و درمان": Net_Expenditure_COICOP2018_06
+  "7- حمل ونقل": Net_Expenditure_COICOP2018_07
+  "8- ارتباطات": Net_Expenditure_COICOP2018_08
+  "9- تفریح و امور فرهنگی": Net_Expenditure_COICOP2018_09
+  "10- تحصیل": Net_Expenditure_COICOP2018_10
+  "11- رستوران و هتل": Net_Expenditure_COICOP2018_11
+  "12- کالاها و خدمات متفرقه": Net_Expenditure_COICOP2018_12
 
 change_annual_net_expenditure_by_group:
-  col: col
+  "جمع کل هزینه خالص": Net_Expenditure_Growth_Total
+  "1- خوراکیها و آشامیدنیها": Net_Expenditure_Growth_COICOP2018_01
+  "2- دخانیات": Net_Expenditure_Growth_COICOP2018_02
+  "3- پوشاک و کفش": Net_Expenditure_Growth_COICOP2018_03
+  "4- مسکن، آب، برق، گاز و سایر سوخت ها": Net_Expenditure_Growth_COICOP2018_04
+  "5- لوازم، اثاث و خدمات مورد استفاده در خانه": Net_Expenditure_Growth_COICOP2018_05
+  "6- بهداشت و درمان": Net_Expenditure_Growth_COICOP2018_06
+  "7- حمل ونقل": Net_Expenditure_Growth_COICOP2018_07
+  "8- ارتباطات": Net_Expenditure_Growth_COICOP2018_08
+  "9- تفریح و امور فرهنگی": Net_Expenditure_Growth_COICOP2018_09
+  "10- تحصیل": Net_Expenditure_Growth_COICOP2018_10
+  "11- رستوران و هتل": Net_Expenditure_Growth_COICOP2018_11
+  "12- کالاها و خدمات متفرقه": Net_Expenditure_Growth_COICOP2018_12
 
 annual_gross_expenditure_food_beverages_tobacco:
-  col: col
+  "خوراکیها، آشامیدنیها و دخانیات": Gross_Expenditure_COICOP2018_01-02
+  "خوراکیها و آشامیدنیها": Gross_Expenditure_COICOP2018_01
+  "1- آرد، رشته و غلات": Gross_Expenditure_COICOP2018_01.1.1
+  "آرد و رشته": 
+  "غلات و فرآورده های آن": 
+  "2- انواع نان و بیسکویت": 
+  "انواع نان": 
+  "بیسکویت ، کیک و شیرینی خشک": 
+  "3- انواع گوشت": 
+  "گوشت دام": 
+  "گوشت پرندگان": 
+  "فرآورده های گوشت دام و پرندگان": 
+  "انواع ماهی": 
+  "حیوانات دریایی و فرآوردههای آن": 
+  "4- شیر و فرآوردههای آن و تخم پرندگان": 
+  "انواع شیر": 
+  "فرآوردههای شیر": 
+  "تخم پرندگان": 
+  "5- روغنها و چربیها": 
+  "روغنها و چربیهای حیوانی": 
+  "انواع کره": 
+  "روغنهای حیوانی": 
+  "6- میوههای تازه": 
+  "میوههای درختی (بجز مرکبات)": 
+  "مرکبات": 
+  "میوههای جالیزی": 
+  "7- سبزیهای تازه": 
+  "انواع سبزی های برگی (تازه و یخ زده)": 
+  "انواع سبزی های بوته ای (تازه و یخ زده)": 
+  "انواع سبزی های ریشه ای (تازه و یخ زده)": 
+  "8- خشکبار و آجیل": 
+  "9- حبوب": 
+  "10- انواع کنسرو و فرآوردههای سبزی": 
+  "11- قند و شکر": 
+  "12- انواع شیرینی و مربا (به جز شیرینی خشک)": 
+  "13- چای ، قهوه و کاکایو": 
+  "14- انواع ادویه ، سسها و سایر ترکیبات خوراکی": 
+  "15- آشامیدنیها": 
+  "دخانیات": Gross_Expenditure_COICOP2018_02
 
 annual_consumption_quantity_food_beverages_tobacco:
-  col: col
+  "اقلام خوراکیها، آشامیدنیها و دخانیات": Year
+  "انواع برنج": Rice
+  "انواع نان": Bread
+  "گوشت دام": Red_Meat
+  "گوشت پرندگان": Poultry_Meat
+  "فرآورده های گوشت دام و پرندگان": Meat_Products
+  "انواع ماهی": Fish
+  "حیوانات دریایی و فرآورده های آن": Marine_Animals
+  "گوشت حیوانات دریایی": Marine_Animals
+  "انواع شیر": Milk
+  "انواع ماست": Yogurt
+  "انواع پنیر": Cheese
+  "تخم مرغ": Egg
+  "روغنهای نباتی": Vegetable_Oil
+  "انواع قند": Sugar_Cube
+  "شکر": Sugar
+  "انواع چای": Tea
+  "انواع سیگار ایرانی": Iranian_Cigarette
+  "انواع سیگار خارجی": Foreign_Cigarette
 
 annual_gross_expenditure_non_food:
   col: col
@@ -35,10 +174,21 @@ change_annual_net_income_by_source:
   col: col
 
 household_size:
-  col: col
+  "متوسط تعداد افراد خانوار": Household_Size
+  "بعد خانوار نفر": Household_Size_Average
 
 household_distribution_by_members:
-  col: col
+  "تعداد افراد خانوار": Year
+  "یک نفر": Household_Size_1
+  "دو نفر": Household_Size_2
+  "سه نفر": Household_Size_3
+  "چهار نفر": Household_Size_4
+  "پنج نفر": Household_Size_5
+  "شش نفر": Household_Size_6
+  "هفت نفر": Household_Size_7
+  "هشت نفر": Household_Size_8
+  "نه نفر": Household_Size_9
+  "ده نفر و بیشتر": Household_Size_10_plus
 
 population_distribution_by_age_group:
   col: col
@@ -50,13 +200,22 @@ literacy_rate_6_plus_by_gender:
   col: col
 
 employment_status_6_plus:
-  col: col
+  "شاغل": Employed
+  "بیکار": Unemployed
+  "بیکار در جستجوی کار": Unemployed
+  "با درآمد بدون کار": Income_without_Work
+  "محصل": Student
+  "خانه دار": Housekeeper
+  "سایر": Other
 
 employment_status_6_plus_by_gender:
   col: col
 
 household_distribution_by_number_of_employed:
-  col: col
+  "بدون فرد شاغل": Employed_0
+  "یک نفر شاغل": Employed_1
+  "دو نفر شاغل": Employed_2
+  "سه نفر شاغل و بیشتر": Employed_3_plus
 
 employed_by_industry:
   col: col
@@ -70,11 +229,32 @@ housing_tenure:
 housing_materials:
   col: col
 
-housing_rooms_used:
-  col: col
+
+housing_rooms:
+  "یک اتاق": Dwelling_Room_1
+  "دو اتاق": Dwelling_Room_2
+  "سه اتاق": Dwelling_Room_3
+  "چهار اتاق": Dwelling_Room_4
+  "پنج اتاق": Dwelling_Room_5
+  "شش اتاق و بیشتر": Dwelling_Room_6_Plus
+
 
 household_facilities_access:
-  col: col
+  "آب لوله کشی": Pipe_Water
+  "برق": Electricity
+  "گاز شهری": Natural_Gas
+  "سیستم فاضلاب شهری": Sewerage
+  "آشپزخانه": Kitchen
+  "حمام": Bathroom
+  "کولر ثابت آبی یا گازی": AC
+  "کولر ثابت": AC
+  "شوفاژ یا پکیج شوفاژ دیواری": Central_Heating
+  "حرارت مرکزی": Central_Heating
+  "انباری": Storage_Room
+  "تلفن": Phone
+  "اینترنت": Internet
+  "عضویت در شبکه های اجتماعی": Social_Media_Access
+
 
 household_appliances_access:
   "اتومبیل شخصی": Car

@@ -1,0 +1,112 @@
+cbi_hbs_food_categories:
+  defaults:
+    column_names: [Commodity]
+  items:
+    Rice:
+      level: 1
+      code:
+        1363: {start: 11_211, end: 11_245}
+        1381: {start: 11_211, end: 11_278}
+        1383: {start: 11_111, end: 11_119}
+
+    Bread:
+      level: 1
+      code:
+        1363: {start: 11_311, end: 11_380}
+        1383: {start: 11_141, end: 11_154}
+
+    Red_Meat:
+      level: 1
+      code:
+        1363:
+          - {start: 12_111, end: 12_135}
+          - [12_156, 12_167]
+        1383: [11_211, 11_212, 11_213, 11_216, 11_217]
+
+    Poultry_Meat:
+      level: 1
+      code:
+        1363: {start: 12_311, end: 12_350}
+        1383: {start: 11_231, end: 11_236}
+
+    Meat_Products:
+      level: 1
+      code:
+        1363:
+        1383: 
+          - [11_214, 11_215, 11_218]
+          - {start: 11_221, end: 11_225}
+          - {start: 11_236, end: 11_239}
+
+    Fish:
+      level: 1
+      code:
+        1363: {start: 12_411, end: 12_430}
+        1383: {start: 11_311, end: 11_316}
+
+    Marine_Animals:
+      level: 1
+      code:
+        1363: {start: 12_430, end: 12_441}
+        1383: {start: 11_316, end: 11_324}
+
+    Milk:
+      level: 1
+      code:
+        1363: [13_115, 13_126]
+        1383: [11_411, 11_412]
+
+    Yogurt:
+      level: 1
+      code:
+        1363: [13_239, 13_240]
+        1381: [13_240, 13_250]
+        1383: [11_424, 11_425, 11_426]
+
+    Cheese:
+      level: 1
+      code:
+        1363: [13_261, 13_272]
+        1383: [11_428, 11_429, 11_431, 11_432]
+
+    Egg:
+      level: 1
+      code:
+        1363: [13_410, 13_421, 13_432]
+        1383: [11_441, 11_442, 11_443]
+
+    Vegetable_Oil:
+      level: 1
+      code:
+        1363: [14_210, 14_220, 14_231]
+        1383: [11_531, 11_532, 11_533]
+
+    Sugar_Cube:
+      level: 1
+      code:
+        1363: 17_116
+        1383: 11_811
+
+    Sugar:
+      level: 1
+      code:
+        1363: 17_127
+        1383: 11_812
+
+    Tea:
+      level: 1
+      code:
+        1363: [17_411, 17_422]
+        1383: [12_111, 12_112, 12_113]
+
+    Iranian_Cigarette:
+      level: 1
+      code:
+        1363: [19_519, 19_520]
+        1383: [22_111, 22_112]
+
+    Foreign_Cigarette:
+      level: 1
+      code:
+        1363: 19_530
+        1383: [22_113, 22_114]
