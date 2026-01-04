@@ -174,7 +174,7 @@ change_annual_net_income_by_source:
   col: col
 
 household_size:
-  "متوسط تعداد افراد خانوار": Household_Size
+  "متوسط تعداد افراد خانوار": Household_Size_Average
   "بعد خانوار نفر": Household_Size_Average
 
 household_distribution_by_members:

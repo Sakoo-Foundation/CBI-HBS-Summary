@@ -195,7 +195,7 @@ def _():
             "Food_and_Beverages",
         ],
         "household_size": [
-            "Household_Size",
+            "Household_Size_Average",
         ],
         "household_distribution_by_members": [
             "Household_Size_1",
@@ -225,12 +225,12 @@ def _():
             "Employed_3_plus",
         ],
         "housing_rooms": [
-            "Dwelling_1_Room",
-            "Dwelling_2_Room",
-            "Dwelling_3_Room",
-            "Dwelling_4_Room",
-            "Dwelling_5_Room",
-            "Dwelling_6_Room_Plus",
+            "Dwelling_Room_1",
+            "Dwelling_Room_2",
+            "Dwelling_Room_3",
+            "Dwelling_Room_4",
+            "Dwelling_Room_5",
+            "Dwelling_Room_6_Plus",
         ],
         "household_appliances_access": [
             "Car",
@@ -262,7 +262,7 @@ def _():
             "Bathroom",
             "AC",
             "Central_Heating",
-            "Storage_Room",
+            # "Storage_Room",
             "Internet",
             "Social_Media_Access",
         ],
@@ -331,9 +331,11 @@ def _(
         if plot_table.value == "household_size":
             ylabel = "Average Household Size"
         elif plot_table.value in [
-            "household_appliances_access",
+            "housing_rooms",
             "household_distribution_by_members",
             "household_distribution_by_number_of_employed",
+            "household_appliances_access",
+            "household_facilities_access",
         ]:
             ylabel = "Percentage of Households (%)"
         elif "6_plus" in plot_table.value:
