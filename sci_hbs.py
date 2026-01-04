@@ -784,6 +784,25 @@ def _(create_house_specification_comparison_table):
 
 
 @app.cell
+def _(hbsir):
+    hbsir.load_table("house_specifications", 1383).columns
+    return
+
+
+@app.cell
+def _(create_house_specification_comparison_table, pl):
+    create_house_specification_comparison_table(
+        pl.col("Split_AC")
+        .or_(pl.col("Evaporative_AC"))
+        .or_(pl.col("Central_AC"))
+        .or_(pl.col("AC"))
+        .alias("AC"),
+        "household_facilities_access",
+    )
+    return
+
+
+@app.cell
 def _(create_house_specification_comparison_table):
     create_house_specification_comparison_table("Central_Heating", "household_facilities_access")
     return
