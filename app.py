@@ -192,7 +192,6 @@ def _():
             "Food_and_Beverages",
         ],
         "annual_gross_expenditure_by_group_normalized_share": [
-            "Total",
             "Food_and_Beverages",
         ],
         "household_size": [

@@ -1,3 +1,10 @@
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "fastexcel==0.18.0",
+# ]
+# ///
+
 import marimo
 
 __generated_with = "0.18.4"
@@ -180,8 +187,18 @@ def _(available_tables, cbi_hbs_summary, get_year_file_reader, pl, re):
 
 @app.cell
 def _(cleaned_dir, extract_standard_tables):
-    table_name = "household_distribution_by_number_of_employed"
-    extract_standard_tables(name=table_name).write_csv(cleaned_dir / f"{table_name}.csv")
+    for table_name in [
+        "annual_consumption_quantity_food_beverages_tobacco",
+        "annual_gross_expenditure_by_group",
+        "employment_status_6_plus",
+        "household_appliances_access",
+        "household_distribution_by_members",
+        "household_distribution_by_number_of_employed",
+        "household_facilities_access",
+        "household_size",
+        "housing_rooms",
+    ]:
+        extract_standard_tables(name=table_name).write_csv(cleaned_dir / f"{table_name}.csv")
     return
 
 

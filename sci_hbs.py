@@ -185,7 +185,7 @@ def _(dfs, pl):
         pl.concat(dfs, how="vertical_relaxed")
         .group_by("Year", "ID", "L1").agg(pl.col("Gross_Expenditure").sum())
         .drop_nulls()
-        .pivot(index=["Year", "ID"], columns="L1", values="Gross_Expenditure")
+        .pivot(index=["Year", "ID"], on="L1", values="Gross_Expenditure")
         .fill_null(0)
         .with_columns(pl.sum_horizontal(pl.all().exclude(["Year", "ID"])).alias("total"))
     )
